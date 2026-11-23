@@ -90,7 +90,7 @@ app/code/Webvire/SocialVire/
 Open your terminal (SSH), go to your Magento root directory and run:
 
 ```bash
-php bin/magento module:enable Webvire_SocialVire
+php bin/magento module:enable MyVendor_SocialShare
 php bin/magento setup:upgrade
 php bin/magento setup:di:compile
 php bin/magento setup:static-content:deploy -f
