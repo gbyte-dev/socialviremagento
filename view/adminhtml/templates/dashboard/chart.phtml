@@ -1,0 +1,99 @@
+<div class="dashboard-item" style="margin-bottom: 20px; border: 1px solid #e3e3e3; padding: 25px; background: #fff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+    <div class="dashboard-item-title" style="font-size: 18px; font-weight: 600; margin-bottom: 20px; color: #333; border-bottom: 1px solid #eee; padding-bottom: 15px; display: flex; align-items: center;">
+        <span style="display:inline-block; width:4px; height:18px; background:#eb5202; margin-right:10px; border-radius:2px;"></span>
+        Social Share Statistics
+    </div>
+    <div class="dashboard-item-content">
+        <div id="social-share-chart" style="height: 400px; width: 100%;"></div>
+        <div id="no-share-data" style="display:none; text-align:center; padding: 50px; color: #666; font-size: 16px;">
+            No share data available yet. Start sharing to see analytics!
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    require(['jquery'], function($){
+        var script = document.createElement('script');
+        script.src = "https://www.gstatic.com/charts/loader.js";
+        script.onload = function() {
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+        };
+        document.head.appendChild(script);
+
+        function drawChart() {
+            var chartData = <?= $escaper->escapeHtmlAttr($block->getShareData()) ?>;
+            
+            if (chartData.length === 0) {
+                $('#social-share-chart').hide();
+                $('#no-share-data').show();
+                return;
+            }
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Platform');
+            data.addColumn('number', 'Shares');
+            
+            // PERFECT BRAND COLORS
+            var platformColors = {
+                'Facebook': '#0b51ac',
+                'X (Twitter)': '#000000',
+                'LinkedIn': '#209791',
+                'Pinterest': '#E60023',
+                'Telegram': '#0088cc',
+                'WhatsApp': '#25D366',
+                'Copy Link': '#6c757d'
+            };
+            
+            var assignedColors = [];
+
+            chartData.forEach(function(row) {
+                data.addRow([row.label, row.value]);
+                assignedColors.push(platformColors[row.label] || '#999999');
+            });
+
+            var options = {
+                pieHole: 0.65,
+                colors: assignedColors,
+                chartArea: {width: '90%', height: '90%', top: 20, left: 20},
+                backgroundColor: 'transparent',
+                legend: {
+                    position: 'right',
+                    textStyle: {fontSize: 14, color: '#333', fontName: 'Segoe UI, Arial, sans-serif'},
+                    alignment: 'center'
+                },
+                pieSliceText: 'value',
+                pieSliceTextStyle: {color: '#fff', fontSize: 14, bold: true, fontName: 'Segoe UI, Arial, sans-serif'},
+                tooltip: {
+                    textStyle: {fontSize: 14, color: '#333'},
+                    showColorCode: true
+                },
+               
+                animation: {
+                    startup: false 
+                },
+             
+                pieStartAngle: 100,
+                sliceVisibilityThreshold: 0.02
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('social-share-chart'));
+            chart.draw(data, options);
+
+
+            $(window).resize(function(){
+                chart.draw(data, options);
+            });
+        }
+    });
+</script>
+
+<style>
+
+    .google-visualization-tooltip {
+        border-radius: 6px !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+        border: 1px solid #ddd !important;
+        padding: 10px !important;
+    }
+</style>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="myvendor_social_share_log" resource="default" engine="innodb" comment="Social Share Logs">
+        <column xsi:type="bigint" name="event_id" unsigned="true" nullable="false" identity="true" comment="Event ID"/>
+        <column xsi:type="varchar" name="platform" length="30" nullable="false" comment="Platform Name"/>
+        <column xsi:type="varchar" name="action" length="20" nullable="false" comment="Share or Copy"/>
+        <column xsi:type="varchar" name="entity_type" length="30" nullable="true" comment="Product, CMS, Category"/>
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="true" comment="Entity ID"/>
+        <column xsi:type="varchar" name="entity_name" length="255" nullable="true" comment="Entity Name"/>
+        <column xsi:type="text" name="page_url" nullable="false" comment="Shared Page URL"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" comment="Store ID"/>
+        <column xsi:type="int" name="customer_id" unsigned="true" nullable="true" comment="Customer ID"/>
+        <column xsi:type="varchar" name="visitor_id" length="64" nullable="true" comment="Visitor ID (IP/User Agent)"/>
+        <column xsi:type="varchar" name="ip_address" length="45" nullable="true" comment="IP Address"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="event_id"/>
+        </constraint>
+        <index referenceId="MYVENDOR_SOCIAL_SHARE_LOG_CREATED_AT" indexType="btree">
+            <column name="created_at"/>
+        </index>
+    </table>
+</schema>

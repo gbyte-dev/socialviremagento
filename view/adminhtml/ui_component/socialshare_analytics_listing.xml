@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">socialshare_analytics_listing.socialshare_analytics_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>socialshare_analytics_columns</spinner>
+        <deps>
+            <dep>socialshare_analytics_listing.socialshare_analytics_listing_data_source</dep>
+        </deps>
+    </settings>
+    
+    <dataSource name="socialshare_analytics_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">event_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>MyVendor_SocialShare::analytics</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="socialshare_analytics_listing_data_source">
+            <settings>
+                <requestFieldName>event_id</requestFieldName>
+                <primaryFieldName>event_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+        <exportButton name="export_button"/>
+    </listingToolbar>
+
+    <columns name="socialshare_analytics_columns">
+        <column name="event_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <!-- <column name="platform">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Platform</label>
+            </settings>
+        </column> -->
+        <column name="platform" class="MyVendor\SocialShare\Ui\Component\Listing\Column\PlatformLabel">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Platform</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+            </settings>
+        </column>
+        <column name="action">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Action</label>
+            </settings>
+        </column>
+        <column name="entity_type">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Entity Type</label>
+            </settings>
+        </column>
+        <!-- <column name="entity_name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Entity Name</label>
+            </settings>
+        </column> -->
+         <column name="entity_name" class="MyVendor\SocialShare\Ui\Component\Listing\Column\EntityLink">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Entity Name</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl> <!-- Ye line HTML link ko render karegi -->
+            </settings>
+        </column>
+        <column name="ip_address">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">IP Address</label>
+            </settings>
+        </column>
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Date &amp; Time</label>
+            </settings>
+        </column>
+    </columns>
+</listing>
