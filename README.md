@@ -148,12 +148,12 @@ For detailed user guides, see the `docs/` folder in this repository or visit our
 
 Facing an issue, need help with installation, or want custom features? We're happy to help.
 
-|                    |                                                                 |
-| :----------------- | :-------------------------------------------------------------- |
-| 📧 **Email**       | [info@webvire.com](mailto:info@webvire.com)                     |
-| 📞 **Phone**       | [+91 7309277237](tel:+917309277237)                             |
-| 🌐 **Website**     | [webvire.com](https://webvire.com/)                             |
-| 🛟 **Help Center** | [Support & Help Center](https://socialvire.webvire.com/support) |
+|                    |                                                                             |
+| :----------------- | :-------------------------------------------------------------------------- |
+| 📧 **Email**       | [info@webvire.com](mailto:info@webvire.com)                                 |
+| 📞 **Phone**       | [+91 7309277237](tel:+917309277237)                                         |
+| 🌐 **Website**     | [webvire.com](https://webvire.com/)                                         |
+| 🛟 **Help Center** | [Support & Help Center](https://socialviremagento.webvire.com/support.html) |
 
 ## 🔒 Legal
 
