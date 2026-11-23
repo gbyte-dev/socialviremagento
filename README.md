@@ -157,8 +157,8 @@ Facing an issue, need help with installation, or want custom features? We're hap
 
 ## 🔒 Legal
 
-- [Privacy Policy](https://socialviremagento.webvire.com/privacy-policy)
-- [Terms & Conditions](https://socialviremagento.webvire.com/terms-and-conditions)
+- [Privacy Policy](https://socialviremagento.webvire.com/privacy-policy.html)
+- [Terms & Conditions](https://socialviremagento.webvire.com/terms-and-conditions.html)
 
 ---
 
